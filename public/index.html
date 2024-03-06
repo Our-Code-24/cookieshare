@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <p id="Info">Event not triggered</p>
+    </body>
+    <script src="/socket/js"></script>
+    <script>
+        io().then((socket) => {
+            window.addEventListener("beforeunload", () => {
+                socket.send("disconnect", "")
+            })
+            socket.bindto("test", (data) => {
+                document.getElementById("Info").innerHTML = data
+            })
+        })
+    </script>
+</html>
